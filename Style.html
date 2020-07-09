@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:fa="http://www.itcomplements.com/cfd/v1" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+<xsl:template match="/">
+<!DOCTYPE html>
+<html>
+<head >
+	<title>StyleSheet for XML CFDI 3.2 y 3.3 para Factura</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  	.valores{
+  		font-weight: bold;
+  	}
+  	.sellos{
+  		font-size: 0.7em;
+  		width: 100%;
+  		word-wrap: break-word;
+  	}
+  </style>
+	<title></title>
+</head>
+<body>
+	<div id="sec_pagina" style="padding:25px">
+		<div id="sec_row1" class="row">
+			<div id="sec_logo" class="col-sm-3 col-print-3">
+					<img src="logo.jpg" alt="Logo ABInBev" title="Logo ABInBev" style="padding: 5%; width:90%; margin: auto;" />
+			</div>
+			<div id="sec_tipo" class="col-sm-3 col-print-3">
+					<span style="padding-left: 10%; padding-top:10%">
+						<h4>Recibida</h4>
+					</span>
+			</div>
+			<xsl:for-each select="cfdi:Comprobante">
+				<div id="sec_cabecera" class="col-sm-6 col-print-6">
+					<div class="panel panel-success">
+	      				<div class="panel-heading" style="padding:2px">Datos Generales</div>
+	      				<div class="panel-body">
+	      					<span>Serie / Folio: </span><span class="valores" style="color: red;">
+	      						FQR142563
+	      					</span> <br/>
+	      					<span>Folio Fiscal (UUID): </span><span class="valores">
+	      						D694E3AF-EE8A-4D6D-BD39-12E0152AE7E8
+	      					</span> <br/>
+	      					<span style="">Tipo de Comprobante: </span><span class="valores">
+	      						I
+	      					</span> <br/>
+	      					<span>Versión CFDI: </span><span class="valores">
+	      						<xsl:value-of select="@version"/>
+	      					</span> <br/>
+	      					<span>Fecha: </span><span class="valores">
+	      						2019-11-01T12:39:12
+	      					</span> 
+	      				</div>
+	    			</div>
+				</div>
+			</xsl:for-each>
+		</div>
+		<div id="sec_row2" class="row">
+			<div id="sec_emi" class="col-sm-6">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Emisor</div>
+      				<div class="panel-body">
+      					<span class="valores">FREDY MARTINEZ UTRERA</span> <br/>
+      					<span>RFC: </span><span class="valores">MAUF780331F64</span> <br/>
+      					<span>Regimen Fiscal: </span><span class="valores">621</span>
+      				</div>
+    			</div>
+			</div>
+			<div id="sec_recep" class="col-sm-6">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Receptor</div>
+      				<div class="panel-body">
+      					<span class="valores">ARTISOFT DE MÉXICO S.A DE C.V.</span> <br/>
+      					<span>RFC: </span><span class="valores">AME1304058S2</span> <br/>
+      					<span>Uso CFDI: </span><span class="valores">G03</span>
+      				</div>
+    			</div>
+			</div>
+		</div>
+		<div id="sec_row3" class="row">
+			<div id="sec_general" class="col-sm-12">
+				<div class="panel panel-success">
+  					<table class="table table-bordered">
+					    <tbody>
+					      <tr>
+					        <td><span>Forma de Pago</span></td>
+					        <td><span>Metodo de Pago</span></td>
+					        <td><span>Moneda</span></td>
+					        <td><span>Tipo de Cambio</span></td>
+					        <td><span>Lugar de Expedición</span></td>
+					      </tr>
+					      <tr>
+					        <th>John</th>
+					        <th>Doe</th>
+					        <th>john@example.com</th>
+					        <th>Doe</th>
+					        <th>john@example.com</th>
+					      </tr>
+					    </tbody>
+					</table>
+    			</div>
+			</div>
+		</div>
+		<div id="sec_row4" class="row">
+			<div id="sec_conceptos" class="col-sm-12">
+				<div class="panel panel-success">
+      				<table class="table table-striped">
+					    <thead>
+					      <tr>
+					        <th style="width: 8%;"><span>Clave</span></th>
+					        <th style="width: 5%;"><span>Cant</span></th>
+					        <th style="width: 5%;"><span>Unidad</span></th>
+					        <th style="width: 37%;"><span>Descripción</span></th>
+					        <th style="width: 10%;"><span>Unitario</span></th>
+					        <th style="width: 20%;"><span>Impuestos</span></th>
+					        <th style="width: 10%;"><span>Importe</span></th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr>
+					        <td>78111808</td>
+					        <td>4080</td>
+					        <td>XBX</td>
+					        <td>VICTORIA BOTE 4PK H-C 24/473 ML CT</td>
+					        <td>91.99</td>
+					        <td>002 - 0.160000 - 75964.61 003 - 0.160000 - 75964.61</td>
+					        <td>375319.20</td>
+					      </tr>
+					      <tr>
+					        <td>78111808</td>
+					        <td>4080</td>
+					        <td>XBX</td>
+					        <td>VICTORIA BOTE 4PK H-C 24/473 ML CT</td>
+					        <td>91.99</td>
+					        <td>002 - 0.160000 - 75964.61 003 - 0.160000 - 75964.61</td>
+					        <td>375319.20</td>
+					      </tr>
+					      <tr>
+					        <td>78111808</td>
+					        <td>4080</td>
+					        <td>XBX</td>
+					        <td>VICTORIA BOTE 4PK H-C 24/473 ML CT</td>
+					        <td>91.99</td>
+					        <td>002 - 0.160000 - 75964.61 003 - 0.160000 - 75964.61</td>
+					        <td>375319.20</td>
+					      </tr>
+					      <tr>
+					        <td>78111808</td>
+					        <td>4080</td>
+					        <td>XBX</td>
+					        <td>VICTORIA BOTE 4PK H-C 24/473 ML CT</td>
+					        <td>91.99</td>
+					        <td>002 - 0.160000 - 75964.61 003 - 0.160000 - 75964.61</td>
+					        <td>375319.20</td>
+					      </tr>
+					      <tr>
+					        <td>78111808</td>
+					        <td>4080</td>
+					        <td>XBX</td>
+					        <td>VICTORIA BOTE 4PK H-C 24/473 ML CT</td>
+					        <td>91.99</td>
+					        <td>002 - 0.160000 - 75964.61 003 - 0.160000 - 75964.61</td>
+					        <td>375319.20</td>
+					      </tr>
+					    </tbody>
+					</table>
+    			</div>
+			</div>
+		</div>
+		<div id="sec_row5" class="row">
+			<div class="col-sm-4">
+			</div>
+			<div id="sec_taxes" class="col-sm-4">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Impuestos Trasladados</div>
+      				<div class="panel-body">
+      					<span>Impuesto 002: </span><span class="valores">0.160000 75964.61</span> <br/>
+      					<span>Impuesto 003: </span><span class="valores">0.265000 75964.61</span> <br/>
+      					<span>Total : </span><span class="valores">175424.20</span>
+      				</div>
+    			</div>
+			</div>
+			<div id="sec_taxes" class="col-sm-4">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Impuestos Retenidos</div>
+      				<div class="panel-body">
+      					<span>Impuesto 002: </span><span class="valores">0.160000 75964.61</span> <br/>
+      					<span>Impuesto 003: </span><span class="valores">0.265000 75964.61</span> <br/>
+      					<span>Total : </span><span class="valores">175424.20</span>
+      				</div>
+    			</div>
+			</div>
+		</div>
+		<div id="sec_row6" class="row">
+			<div class="col-sm-8">
+				
+			</div>
+			<div id="sec_totales" class="col-sm-4">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Totales</div>
+      				<div class="panel-body">
+      					<span>SubTotal: </span><span class="valores">75964.61</span> <br/>
+      					<span>Descuento: </span><span class="valores">75964.61</span> <br/>
+      					<span>Total: </span><span class="valores">175424.20</span>
+      				</div>
+    			</div>
+			</div>
+		</div>
+		<div id="sec_row7" class="row">
+			<div id="sec_pie" class="col-sm-12">
+				<div class="panel panel-success">
+      				<div class="panel-heading" style="padding:2px">Datos de Certificación</div>
+      				<div class="panel-body">
+      					<span>Número de Certificado: </span><span class="valores">00001000000410912477</span> <br/>
+      					<span>Serie Certificado SAT: </span><span class="valores">00001000000403190844</span> <br/>
+      					<span>RFC Proveedor de Certificación: </span><span class="valores">CVD110412TF6</span> <br/>
+      					<span>Fecha Timbrado: </span><span class="valores">2019-11-01T12:39:12</span>
+      					<br/>
+      					<br/>
+      					<span class="valores">Sello del SAT: </span><span class="sellos">jqBBvcladQaX7oGjxdblXIFA1yMSb48M4Xn8hkCXrzolt8F7z3K48tOZCbzIsGb5wkzwLxuG8WYpC2pHrIII1CSwq1Bo0rroKCxdlhEbJsnJOTmstBWa7900p6Yl8PJ4wAOPxelGv0YqjQpm/Ag0BLKGXBQm9wIs0RLNBlO83rt/FIf4CqS5E/BEZ15Ty0KOCjVLGvBDbwTryUMh/uj97ZBw/RVIvNrAU4aE5QNtyobDSKfxgSs01+bxF0TYSrAc3oi305bZO6wa6GnDJEYuJLEJhiyKHpCfmOHgt9Ajfj+e1hq6iJMV3nK2MUMKWEoS1849pTLtUWfzvQPjwFR7Jg==</span> <br/>
+      					<span class="valores">Sello digital del CFDI: </span><span class="sellos">VOEIjGPCnbR+FM55oAnrDP/rdh15ASU9XAKxMUFVTapuhtUe247e1hJ7vxIh5QD8Ewt+RiIE/IHYlU9qx3vKxziw9rRV7Y6KVV1Pym0+7fEyKwKjOztJ0By9RqI5YE5E1HYrMSuPf2alunIAb9DUoo2QMEJjlG5V0flCIEp41oEWBb8sjorrq5QTrhKvp1bzVqwGoyM+101vxhs19Qhm7Nk7gyA/74qkFJZfRHkSHt/YrSwodeCzaD+EnAzq7F2szq81H8Oc/7o0efvJaC+zpP09okK3yQqAZFkLsAKSJZlCuz9+5YlNSnGb5Aohnq/eJLtKqLn9U4SZGA0JdMeKaQ==</span> <br/>
+      					<span class="valores">Cadena original del complemento de certificación digital del SAT: </span><span class="sellos">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</span> <br/>
+      				</div>
+    			</div>
+			</div>
+		</div>
+		<div style="text-align: center;">Este documento es una representación impresa de un CFDI</div>
+	</div>
+</body>
+</html>
